@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joe's Table</title>
+    
+    <!-- Style for "Joe's Table" font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Galada&display=swap" rel="stylesheet">
+    
+    <!-- Style for magnifying glass -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Stylesheet for home.html -->
+    <link rel="stylesheet" type="text/css" href="../styles/reservations.css">    
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="home.html" class="logo">JoesTable!</a>
+            <div class="menu">
+                <a href="home.html" class="menu-link">Home</a>
+                <a href="login.html" class="menu-link" id="login">Login / Sign Up</a>
+                <a href="favorites.html" class="menu-link" id="favorites" onclick="getRestaurants()">Favorites</a>
+                <a href="reservations.html" class="menu-link active" id="reservations">Reservations</a>
+                <a href="home.html" class="menu-link" id="logout" onclick="logUserOut()">Logout</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="featured-dish" id="featured" style="display: none;">
+		    <img src="../assets/Assignment 4 Home Page Image.jpg" alt="Featured Dish" class="featured-image">
+		</section>
+        <section class="search-area">
+			<form id="searchForm" action="../processSearch" method="post">
+                <div class="search-row">
+					<div class="firstTwo">
+                    	<input type="text" id="restaurant-name" name="restaurant-name" required placeholder="Restaurant Name" class="search-input">
+                    	<button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></input>
+                    </div>
+                    <div class="three">
+	                    <div class="search-criteria">
+	                        <label>
+	                            <input type="radio" name="search-option" value="best-match" checked> Best Match
+	                        </label>
+	                        <label>
+	                            <input type="radio" name="search-option" value="review-count"> Review Count
+	                        </label>
+	                        <label>
+	                            <input type="radio" name="search-option" value="rating"> Rating
+	                        </label>
+	                        <label>
+	                            <input type="radio" name="search-option" value="distance"> Distance
+	                        </label>
+	                    </div>
+                    </div>
+                </div>
+                <div class="search-row coordinates">
+					<div class="firstTwo">
+	                    <input type="text" id="latitude" name="latitude"
+						       pattern="-?[0-9]+(\.[0-9]+)?" required placeholder="Latitude"
+						       class="search-input" oninput="setCustomValidity('');"
+						       oninvalid="setCustomValidity('Please enter a number or select a location using Google Maps.')">
+						
+						<input type="text" id="longitude" name="longitude"
+						       pattern="-?[0-9]+(\.[0-9]+)?" required placeholder="Longitude"
+						       class="search-input" oninput="setCustomValidity('');"
+						       oninvalid="setCustomValidity('Please enter a number or select a location using Google Maps.')">
+			        </div>
+			        <div class="three">
+						<button type="button" class="googleMaps">
+						  <i class="fas fa-map-marker-alt"></i> Google Maps (Drop a pin!)
+						</button>
+					</div>
+					<div id="map-overlay" style="display:none">
+					    <div id="map"></div>
+					</div>
+                </div>
+                <div id="search-msg" style="color: #C00000; display: none;">Please enter a search term.</div>
+				<div id="error-msg" style="color: #C00000; display: none;">Please enter a number or select a location using Google Maps.</div>
+				<div class="row-container">
+	                <div id="null-msg" style="color: #C00000; display: none;">No results found... Please revise your search.</div>
+	                <div class="dropdown">
+					  <button class="dropbtn" onclick="return false;">Sort By</button>
+						  <div class="dropdown-content">
+							<a onclick="sort('MostRecent', jsonArr)">Most Recent</a>
+							<a onclick="sort('LeastRecent', jsonArr)">Least Recent</a>
+						  </div>
+					</div>
+				</div>
+                <div id="results"></div>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>Joe's Table! &copy; 2023 by Winston Trinh</p>
+    </footer>
+    <!-- Scripts for home.html -->
+    <!--
+    
+    STEP #2: Replace API Key with your own!
+
+    EXAMPLE:
+    If your API key was:
+    MRlkSyApZOcpAhs4_WZ9MPiuviosOPKsY3tE9zk
+    
+    Replace YOUR_KEY in:
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=initMap"></script>
+    
+    With your API key, which would be:
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=MRlkSyApZOcpAhs4_WZ9MPiuviosOPKsY3tE9zk&callback=initMap"></script>
+    
+    UPDATE WITH YOUR API KEY BELOW -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=initMap"></script>
+    <script src="../scripts/reservations.js"></script>
+</body>
+</html>
