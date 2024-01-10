@@ -52,9 +52,10 @@ JoesTable is a web application that uses the Yelp API to allow users to search f
 
 ### Database
 
-I had used 4 different tables (See `create.sql`):
+I used 4 different tables (See `create.sql`):
 
 1. **Users Table**
+   - email (primary key), username, password
     ```
     CREATE TABLE `JoesTable`.`Users` (
         `email` VARCHAR(255) NOT NULL PRIMARY KEY,
@@ -63,7 +64,9 @@ I had used 4 different tables (See `create.sql`):
     );
     ```
 
-2. **Restaurants Table**
+3. **Restaurants Table**
+   - restaurant_id (primary key), name, address, phone, cuisine, price, rating, url, image_url
+   - Added restaurant to database when any user has not favorited/reserved it yet
    ```
     CREATE TABLE `JoesTable`.`Restaurants` (
         `restaurant_id` VARCHAR(255) NOT NULL PRIMARY KEY,
@@ -78,7 +81,8 @@ I had used 4 different tables (See `create.sql`):
     );
     ```
 
-3. **Favorites Table**
+5. **Favorites Table**
+   - fav_id, email (foreign key), restaurant_id (foreign key)
     ```
    CREATE TABLE `JoesTable`.`Favorites` (
         `fav_id` INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
@@ -89,7 +93,8 @@ I had used 4 different tables (See `create.sql`):
     );
     ```
 
-4. **Reservations Table**
+7. **Reservations Table**
+   - reservation_id (primary key), email (foreign key), restaurant_id (foreign key), date, time, reservation_notes
    ```
     CREATE TABLE `JoesTable`.`Reservations` (
         `reservation_id` INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
