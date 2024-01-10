@@ -167,8 +167,10 @@ Detailed Instructions:
     - After that, go to **APIs & Services** for your project and enable **Maps JavaScript API**
   - You will now have an API Key. Use this to complete **STEP #2** of the three .html files.
 
+## Contact
+
 Please message me if you would like to talk, share your thoughts, or have questions about setting up the project locally on your computer.  
 
 Thank you for taking the time to explore my project!
 
-Contact: [wntrinh@usc.edu](mailto:wntrinh@usc.edu)
+Email: [wntrinh@usc.edu](mailto:wntrinh@usc.edu)
