@@ -55,16 +55,53 @@ JoesTable is a web application that uses the Yelp API to allow users to search f
 I had used 4 different tables (See `create.sql`):
 
 1. **Users Table**
-   - Data: user_id, username, password, email
+    ```
+    CREATE TABLE `JoesTable`.`Users` (
+        `email` VARCHAR(255) NOT NULL PRIMARY KEY,
+        `username` VARCHAR(255) NOT NULL UNIQUE,
+        `password` VARCHAR(255) NULL
+    );
+    ```
 
 2. **Restaurants Table**
-   - Data: restaurant_id, name, address, phone, etc.
+   ```
+    CREATE TABLE `JoesTable`.`Restaurants` (
+        `restaurant_id` VARCHAR(255) NOT NULL PRIMARY KEY,
+        `name` VARCHAR(255) NOT NULL,
+        `address` VARCHAR(255) NOT NULL,
+        `phone` VARCHAR(20) NOT NULL,
+        `cuisine` VARCHAR(255) NOT NULL,
+        `price` VARCHAR(255) NOT NULL,
+        `rating` DOUBLE NOT NULL,
+        `url` VARCHAR(255),
+        `image_url` VARCHAR(255)
+    );
+    ```
 
 3. **Favorites Table**
-   - Data: user_id, restaurant_id
+    ```
+   CREATE TABLE `JoesTable`.`Favorites` (
+        `fav_id` INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+        `email` VARCHAR(255) NOT NULL,
+        `restaurant_id` VARCHAR(255) NOT NULL,
+        FOREIGN KEY (`email`) REFERENCES `Users`(`email`),
+        FOREIGN KEY (`restaurant_id`) REFERENCES `Restaurants`(`restaurant_id`)
+    );
+    ```
 
 4. **Reservations Table**
-   - Data: user_id, restaurant_id, date, time
+   ```
+    CREATE TABLE `JoesTable`.`Reservations` (
+        `reservation_id` INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+        `email` VARCHAR(255) NOT NULL,
+        `restaurant_id` VARCHAR(255) NOT NULL,
+        `date` DATE NOT NULL,
+        `time` TIME NOT NULL,
+        `reservation_notes` TEXT,
+        FOREIGN KEY (`email`) REFERENCES `Users`(`email`),
+        FOREIGN KEY (`restaurant_id`) REFERENCES `Restaurants`(`restaurant_id`)
+    );
+    ```
 
 I used primary keys, foreign keys, and auto-increment ID to connect the tables.
 
