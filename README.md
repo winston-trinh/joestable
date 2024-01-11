@@ -4,6 +4,7 @@
 JoesTable is a web application that uses the Yelp API to allow users to search for restaurants, add them to their favorites, and schedule reservations. I incorporated a MySQL database for managing user data and utilized the Google Maps JavaScript API for enhanced functionality.
 
 ### [*Video Demo*](https://drive.google.com/file/d/1XXOo4iwsc3NZHsGc9SCGoblmNQzPA3PS/view?usp=share_link)
+<a href="#">![](images/webpage.png)</a>
 
 ## How It's Organized
 ### Frontend
